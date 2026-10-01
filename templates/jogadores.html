@@ -17,25 +17,35 @@
         <h2>Novo Jogador</h2>
         <form method="POST" action="{{ url_for('novo_jogador') }}">
             <div class="campo">
-                <label for="nome">Nome *</label>
+                <label for="nome">Nome</label>
                 <input type="text" id="nome" name="nome">
             </div>
-            <div class="linha-campos">
-                <div class="campo">
-                    <label for="idade">Idade</label>
-                    <input type="number" id="idade" name="idade" min="0">
-                </div>
+            <div class="campo">
                 <div class="campo">
                     <label for="posicao">Posição</label>
-                        TROCAR PARA SELECT OPTION
-                    <input type="text" id="posicao" name="posicao" placeholder="Ex: Atacante">
+                    <select id="posicao" name="posicao">
+                        <option value="Atacante">Atacante</option>
+                         <option value="zagueiro">Zagueiro</option>
+                        <option value="goleiro">Goleiro</option>
+                        <option value="lateral">Lateral</option>
+                        <option value="ponta_direita">Ponta direita</option>
+                        <option value="ponta_esquerda">Ponta esquerda</option>
+                        <option value="meio_canto">Meio canto</option>
+                        <option value="volante">Volante</option>
+                    </select>
                 </div>
             </div>
             <div class="campo">
                 <label for="time_id">Time</label>
                 <select id="time_id" name="time_id">
-                    <option value="">Sem time</option>
+                    {% for time in times %}
+                    <option value="{{ time.id }}">{{ time.nome }}</option>
+                    {% endfor %}
                 </select>
+            </div>
+            <div class="campo">
+                <label for="numero_camisa">Número camisa</label>
+                <input type="number" id="numero_camisa" name="numero_camisa">
             </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
