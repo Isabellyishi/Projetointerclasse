@@ -18,12 +18,12 @@
         <form method="POST" action="{{ url_for('novo_time') }}">
             <div class="linha-campos">
                 <div class="campo">
-                    <label for="nome">Nome do Time</label>
+                    <label for="nome">Nome do Time *</label>
                     <input type="text" id="nome" name="nome">
                 </div>
                 <div class="campo">
                     <label for="turma">Turma</label>
-                    <input type="text" id="turma" name="turma">
+                    <input type="text" id="turma" name="turma" placeholder="Ex: 2º EM">
                 </div>
                 <div class="campo">
                     <label for="responsavel">Responsável</label>
@@ -42,24 +42,7 @@
         <h2>Lista de Times</h2>
         {% if times %}
         <table>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Turma</th>
-                    <th>Responsável</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for time in times %}
-                <tr>
-                    <td>{{ time.id }}</td>
-                    <td>{{ time.nome }}</td>
-                    <td>{{ time.turma }}</td>
-                    <td>{{ time.responsavel }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
+<!--           Insira sua tabela aqui -->
         </table>
         {% else %}
             <p class="vazio">Nenhum time cadastrado ainda.</p>

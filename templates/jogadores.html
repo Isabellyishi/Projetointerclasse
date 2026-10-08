@@ -17,35 +17,30 @@
         <h2>Novo Jogador</h2>
         <form method="POST" action="{{ url_for('novo_jogador') }}">
             <div class="campo">
-                <label for="nome">Nome</label>
+                <label for="nome">Nome *</label>
                 <input type="text" id="nome" name="nome">
             </div>
-            <div class="campo">
+            <div class="linha-campos">
+                <div class="campo">
+                    <label for="ncamisa">Numero Camisa</label>
+                    <input type="number" id="ncamisa" name="camisanumero" min="0">
+                </div>
                 <div class="campo">
                     <label for="posicao">Posição</label>
                     <select id="posicao" name="posicao">
-                        <option value="Atacante">Atacante</option>
-                         <option value="zagueiro">Zagueiro</option>
                         <option value="goleiro">Goleiro</option>
                         <option value="lateral">Lateral</option>
-                        <option value="ponta_direita">Ponta direita</option>
-                        <option value="ponta_esquerda">Ponta esquerda</option>
-                        <option value="meio_canto">Meio canto</option>
-                        <option value="volante">Volante</option>
+                        <option value="zagueiro">Zagueiro</option>
+                        <option value="meio campo">Meio Campo</option>
+                        <option value="atacante">Atacante</option>
                     </select>
                 </div>
             </div>
             <div class="campo">
                 <label for="time_id">Time</label>
                 <select id="time_id" name="time_id">
-                    {% for time in times %}
-                    <option value="{{ time.id }}">{{ time.nome }}</option>
-                    {% endfor %}
+                    <option value="">Sem time</option>
                 </select>
-            </div>
-            <div class="campo">
-                <label for="numero_camisa">Número camisa</label>
-                <input type="number" id="numero_camisa" name="numero_camisa">
             </div>
             <div class="acoes-form">
                 <button type="submit" class="botao">Cadastrar</button>
@@ -59,7 +54,26 @@
         <h2>Lista de Jogadores</h2>
         {% if jogadores %}
         <table>
-
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Numero Camisa</th>
+                    <th>Posição</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for jogador in jogadores %}
+                <tr>
+                    <td>{{ jogador.id }}</td>
+                    <td>{{ jogador.nome }}</td>
+                    <td>{{ jogador.numero_camisa }}</td>
+                    <td>{{ jogador.posicao }}</td>
+                    <td>{{ jogador.time_id }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
         {% else %}
             <p class="vazio">Nenhum jogador cadastrado ainda.</p>
