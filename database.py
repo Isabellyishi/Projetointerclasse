@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker, scoped_session
 
-engine = create_engine("mysql+pymysql://root:admin123@localhost:3306/interclasse_db")
+engine = create_engine("mysql+pymysql://root:senaisp@localhost:3306/interclasse_db")
 
 db_session = scoped_session(sessionmaker(bind=engine))
 
@@ -21,8 +21,8 @@ class Jogador(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String(100), nullable=False)
-    idade = Column(Integer)
     posicao = Column(String(50))
+    numero_camisa = Column(Integer)
     time_id = Column(Integer, ForeignKey("times.id", ondelete="SET NULL"))
 
 

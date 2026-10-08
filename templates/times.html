@@ -42,7 +42,26 @@
         <h2>Lista de Times</h2>
         {% if times %}
         <table>
-<!--           Insira sua tabela aqui -->
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Jogadores</th>
+                    <th>Responsável</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for time, jogadores in times %}
+                <tr>
+                    <td>{{ time.id }}</td>
+                    <td>{{ time.nome }}</td>
+                    <td>{{ time.turma }}</td>
+                    <td>{{ jogadores }}</td>
+                    <td>{{ time.responsavel }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
         {% else %}
             <p class="vazio">Nenhum time cadastrado ainda.</p>
