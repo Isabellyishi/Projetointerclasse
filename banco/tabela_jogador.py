@@ -38,4 +38,18 @@ def salvar(nome, numero_camisa, posicao, time_id):
         flash("Ocorreu um erro, tente novamente", "error")
         print(f"Erro: {e}")
 
-select_todos()
+#select_todos()
+
+def select_um(id_jogador):
+    jogador_sql = select(Jogador).where(Jogador.id == id_jogador)
+    jogador = db_session.execute(jogador_sql).scalar_one_or_none()
+    return jogador
+print(select_um(1))
+
+# Trazer jogadores de um time
+
+def select_por_time(id_time):
+    jogadores_sql = select(Jogador).where(Jogador.time_id == id_time)
+    jogadores = db_session.execute(jogadores_sql).scalars().all()
+    return jogadores
+print(select_por_time(1))

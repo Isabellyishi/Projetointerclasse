@@ -33,6 +33,7 @@ def salvar(nome, turma, responsavel):
         db_session.add(time_novo)
         db_session.commit()
         flash("Time criado com sucesso", "success")
+        return time_novo
     except SQLAlchemyError as e:
         db_session.rollback()
         flash("Ocorreu um erro, tente novamente", "error")
@@ -41,3 +42,10 @@ def salvar(nome, turma, responsavel):
         db_session.rollback()
         flash("Ocorreu um erro, tente novamente", "error")
         print(f"Erro: {e}")
+
+def select_um(id_time):
+    time_sql = select(Time).where(Time.id == id_time)
+    time = db_session.execute(time_sql).scalars()
+    return time
+
+print(select_um(10))
